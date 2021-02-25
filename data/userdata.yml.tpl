@@ -3,7 +3,7 @@ files:
   text: |
     resources:
   %{ for cluster in clusters ~}
-    - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+  - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
       name: ${cluster.name}-${cluster.bport}
       connect_timeout: 1s
       type: STRICT_DNS
@@ -14,7 +14,7 @@ files:
   text: |
     resources:
   %{ for cluster in clusters ~}
-    - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+  - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
       name: ${cluster.name}-${cluster.bport}
       connect_timeout: 1s
       type: STRICT_DNS
@@ -41,7 +41,7 @@ files:
   text: |
     resources:
   %{ for cluster in clusters ~}
-    - "@type": "type.googleapis.com/envoy.config.listener.v3.Listener"
+  - "@type": "type.googleapis.com/envoy.config.listener.v3.Listener"
       name: ${cluster.name}-${cluster.fport}
       address:
         socket_address:
