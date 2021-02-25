@@ -117,6 +117,7 @@ variable "labels" {
 variable "clusters" {
   type = list(object({
     name    = string
+    id      = string
     fport   = number
     bport   = number
     healthcheck = object({

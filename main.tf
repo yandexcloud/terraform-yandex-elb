@@ -49,18 +49,6 @@ resource "yandex_compute_instance_group" "elb" {
 
     metadata = {
       user-data = templatefile("${path.module}/data/userdata.yml", {
-        cds = templatefile("${path.module}/data/cds.yaml", {
-          clusters = var.clusters
-        })
-        cds_tpl = templatefile("${path.module}/data/cds.yaml.tpl", {
-          clusters = var.clusters
-        })
-        lds = templatefile("${path.module}/data/lds.yaml", {
-          clusters = var.clusters
-        })
-        envoy = templatefile("${path.module}/data/envoy.yaml", {
-          name = var.name
-        })
         aws_region     = var.aws_region
         aws_role_arn   = var.aws_role_arn
         aws_access_key = var.aws_access_key
@@ -69,6 +57,8 @@ resource "yandex_compute_instance_group" "elb" {
         folder_id      = data.yandex_resourcemanager_folder.folder.id
         group_name     = var.name
         domain_name    = var.domain_name
+        clusters       = var.clusters
+        envoy_name     = var.name
       })
       ssh-keys           = var.ssh_key
       serial-port-enable = var.serial_port
