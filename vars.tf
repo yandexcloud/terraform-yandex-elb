@@ -50,6 +50,7 @@ variable "sa" {
 
 variable "platform_id" {
   type        = string
+  default     = "standard-v2"
   description = "VM platform id."
 }
 
@@ -115,7 +116,7 @@ variable "labels" {
 
 variable "clusters" {
   type = list(object({
-    cluster = string
+    name    = string
     lport   = number
     bport   = number
     healthcheck = object({
