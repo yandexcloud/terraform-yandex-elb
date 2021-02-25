@@ -27,7 +27,7 @@ files:
         unhealthy_threshold: ${cluster.healthcheck.unhealthy_threshold}
         tcp_health_check:
           send:
-            text: "0"
+            text: "0x0"
       load_assignment:
         cluster_name: ${cluster.name}-${cluster.bport}
         endpoints:
