@@ -2,18 +2,18 @@ files:
 - path: /run/config/xds/cds.yaml
   text: |
     resources:
-    %{ for cluster in clusters ~}
+  %{ for cluster in clusters ~}
     - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
       name: ${cluster.name}-${cluster.bport}
       connect_timeout: 1s
       type: STRICT_DNS
       load_assignment:
         cluster_name: ${cluster.name}-${cluster.bport}
-    %{ endfor ~}
+  %{ endfor ~}
 - path: /run/config/xds/cds.yaml.tpl
   text: |
     resources:
-    %{ for cluster in clusters ~}
+  %{ for cluster in clusters ~}
     - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
       name: ${cluster.name}-${cluster.bport}
       connect_timeout: 1s
@@ -36,11 +36,11 @@ files:
                   address: {{ $host }}
                   port_value: ${cluster.bport}
         {{- end }}
-    %{ endfor ~}
+  %{ endfor ~}
 - path: /run/config/xds/lds.yaml
   text: |
     resources:
-    %{ for cluster in clusters ~}
+  %{ for cluster in clusters ~}
     - "@type": "type.googleapis.com/envoy.config.listener.v3.Listener"
       name: ${cluster.name}-${cluster.fport}
       address:
@@ -55,7 +55,7 @@ files:
             stat_prefix: ${cluster.name}-${cluster.bport}
             cluster: ${cluster.name}-${cluster.bport}
             max_connect_attempts: 4
-    %{ endfor ~}
+  %{ endfor ~}
 - path: /run/config/igdns/env
   text: |
     AWS_REGION=${aws_region}
@@ -68,9 +68,9 @@ files:
     IGDNS_FOLDER=${folder_id}
 - path: /run/config/xds/groups
   text: |
-    %{ for c in clusters ~}
+  %{ for c in clusters ~}
     ${c.name}:${c.id}
-    %{ endfor ~}
+  %{ endfor ~}
 templates:
 - path: /run/config/envoy/envoy.yaml
   text: |
