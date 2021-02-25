@@ -6,12 +6,17 @@ terraform {
   }
 }
 
+data "yandex_resourcemanager_folder" "folder" {
+  folder_id = var.folder
+}
+
 data "yandex_compute_image" "elb" {
   name = var.image
 }
 
 resource "yandex_compute_instance_group" "elb" {
   name               = var.name
+  folder_id          = data.yandex_resourcemanager_folder.folder.id
   service_account_id = var.sa
 
   instance_template {
@@ -43,7 +48,28 @@ resource "yandex_compute_instance_group" "elb" {
     labels = var.labels
 
     metadata = {
-      user-data          = var.userdata
+      user-data = templatefile("${path.module}/data/userdata.yml", {
+        cds = templatefile("${path.module}/data/cds.yaml", {
+          clusters = var.clusters
+        })
+        cds_tpl = templatefile("${path.module}/data/cds.yaml.tpl", {
+          clusters = var.clusters
+        })
+        lds = templatefile("${path.module}/data/lds.yaml", {
+          clusters = var.clusters
+        })
+        envoy = templatefile("${path.module}/data/envoy.yaml", {
+          name = var.name
+        })
+        aws_region     = var.aws_region
+        aws_role_arn   = var.aws_role_arn
+        aws_access_key = var.aws_access_key
+        aws_secret_key = var.aws_secret_key
+        aws_zone_id    = var.hosted_zone_id
+        folder_id      = data.yandex_resourcemanager_folder.folder.id
+        group_name     = var.name
+        domain_name    = var.domain_name
+      })
       ssh-keys           = var.ssh_key
       serial-port-enable = var.serial_port
     }

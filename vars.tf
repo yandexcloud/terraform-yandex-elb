@@ -3,6 +3,41 @@ variable "name" {
   description = "Prefix for resources being created."
 }
 
+variable "domain_name" {
+  type        = string
+  description = "Load balancer domain name associated."
+}
+
+variable "folder" {
+  type        = string
+  description = "Name of the parent folder"
+}
+
+variable "hosted_zone_id" {
+  type        = string
+  description = "AWS public hosted zone id where resource records will be created."
+}
+
+variable "aws_region" {
+  type        = string
+  description = "AWS region - part of credentials to access hosted zone."
+}
+
+variable "aws_role_arn" {
+  type        = string
+  description = "ARN of the AWS role with permissions to edit resource records in the hosted zone provided."
+}
+
+variable "aws_access_key" {
+  type        = string
+  description = "AWS access key ID to assume the role provided."
+}
+
+variable "aws_secret_key" {
+  type        = string
+  description = "AWS secret access key to assume the role provided."
+}
+
 variable "image" {
   type        = string
   description = "Load balancer image name."
@@ -78,7 +113,17 @@ variable "labels" {
   description = "Labels for load balancer's instance group."
 }
 
-variable "userdata" {
-  type        = string
-  description = "User data provided to load balancer's VMs."
+variable "clusters" {
+  type = list(object({
+    cluster = string
+    lport   = number
+    bport   = number
+    healthcheck = object({
+      timeout             = number
+      interval            = number
+      healthy_threshold   = number
+      unhealthy_threshold = number
+    })
+  }))
+  description = "List of target groups."
 }
