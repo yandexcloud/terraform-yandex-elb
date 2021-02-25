@@ -48,7 +48,7 @@ resource "yandex_compute_instance_group" "elb" {
     labels = var.labels
 
     metadata = {
-      user-data = templatefile("${path.module}/data/userdata.yml", {
+      user-data = templatefile("${path.module}/data/userdata.yml.tpl", {
         aws_region     = var.aws_region
         aws_role_arn   = var.aws_role_arn
         aws_access_key = var.aws_access_key
