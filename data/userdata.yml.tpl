@@ -1,4 +1,5 @@
 files:
+
 - path: /run/config/xds/cds.yaml
   text: |
     resources:
@@ -10,6 +11,7 @@ files:
       load_assignment:
         cluster_name: ${cluster.name}-${cluster.bport}
   %{ endfor ~}
+
 - path: /run/config/xds/cds.yaml.tpl
   text: |
     resources:
@@ -37,6 +39,7 @@ files:
                   port_value: ${cluster.bport}
         {{- end }}
   %{ endfor ~}
+
 - path: /run/config/xds/lds.yaml
   text: |
     resources:
@@ -56,6 +59,7 @@ files:
             cluster: ${cluster.name}-${cluster.bport}
             max_connect_attempts: 4
   %{ endfor ~}
+
 - path: /run/config/igdns/env
   text: |
     AWS_REGION=${aws_region}
@@ -66,12 +70,15 @@ files:
     IGDNS_ZONE=${aws_zone_id}
     IGDNS_NAME=${domain_name}
     IGDNS_FOLDER=${folder_id}
+
 - path: /run/config/xds/groups
   text: |
-  %{ for c in clusters ~}
+%{ for c in clusters ~}
     ${c.name}:${c.id}
-  %{ endfor ~}
+%{ endfor ~}
+
 templates:
+
 - path: /run/config/envoy/envoy.yaml
   text: |
     node:
