@@ -19,7 +19,7 @@ ${lds}
     IGDNS_NAME=${domain_name}
     IGDNS_FOLDER=${folder_id}
 templates:
-  path: /run/config/envoy/envoy.yaml
+- path: /run/config/envoy/envoy.yaml
   text: |
 ${envoy}
   vars:

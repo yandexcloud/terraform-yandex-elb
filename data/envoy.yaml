@@ -1,5 +1,5 @@
     node:
-      id: '{{ .hostname }}'
+      id: {{ .hostname }}
       cluster: ${name}
 
     dynamic_resources:
