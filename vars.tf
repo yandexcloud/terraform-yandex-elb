@@ -117,7 +117,7 @@ variable "labels" {
 variable "clusters" {
   type = list(object({
     name    = string
-    lport   = number
+    fport   = number
     bport   = number
     healthcheck = object({
       timeout             = number
