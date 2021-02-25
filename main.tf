@@ -7,7 +7,7 @@ terraform {
 }
 
 data "yandex_resourcemanager_folder" "folder" {
-  folder_id = var.folder
+  name = var.folder
 }
 
 data "yandex_compute_image" "elb" {
