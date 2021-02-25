@@ -1,16 +1,16 @@
-node:
-  id: {{ .hostname }}
-  cluster: ${name}
+    node:
+      id: {{ .hostname }}
+      cluster: ${name}
 
-dynamic_resources:
-  cds_config:
-    path: /etc/xds/cds.yaml
-  lds_config:
-    path: /etc/xds/lds.yaml
+    dynamic_resources:
+      cds_config:
+        path: /etc/xds/cds.yaml
+      lds_config:
+        path: /etc/xds/lds.yaml
 
-admin:
-  access_log_path: "/var/log/envoy/admin.log"
-  address:
-    socket_address:
-      address: 0.0.0.0
-      port_value: 2000
+    admin:
+      access_log_path: "/var/log/envoy/admin.log"
+      address:
+        socket_address:
+          address: 0.0.0.0
+          port_value: 2000

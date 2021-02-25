@@ -1,13 +1,13 @@
 files:
 - path: /run/config/xds/cds.yaml
   text: |
-    ${cds}
+${cds}
 - path: /run/config/xds/cds.yaml.tpl
   text: |
-    ${cds_tpl}
+${cds_tpl}
 - path: /run/config/xds/lds.yaml
   text: |
-    ${lds}
+${lds}
 - path: /run/config/igdns/env
   text: |
   AWS_REGION=${aws_region}
@@ -21,6 +21,6 @@ files:
 templates:
   path: /run/config/envoy/envoy.yaml
   text: |
-    ${envoy}
+${envoy}
   vars:
     hostname: /run/config/local_hostname
