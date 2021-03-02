@@ -9,8 +9,8 @@
         interval: ${cluster.healthcheck.interval}s
         healthy_threshold: ${cluster.healthcheck.healthy_threshold}
         unhealthy_threshold: ${cluster.healthcheck.unhealthy_threshold}
-        tcp_health_check:
-          send: ""
+        http_health_check:
+          path: ${cluster.healthcheck.path}
       load_assignment:
         cluster_name: ${cluster.name}-${cluster.bport}
         endpoints:
