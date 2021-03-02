@@ -20,8 +20,8 @@ resource "yandex_compute_instance_group" "elb" {
   service_account_id = var.sa
 
   instance_template {
-    name               = "${var.name}-{instance.zone_id}-{instance.index_in_zone}"
-    hostname           = "${var.name}-{instance.zone_id}-{instance.index_in_zone}"
+    name               = "${var.name}-{instance.index}"
+    hostname           = "${var.name}-{instance.index}"
     platform_id        = var.platform_id
     service_account_id = var.sa
 
