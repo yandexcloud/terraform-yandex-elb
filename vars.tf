@@ -40,7 +40,7 @@ variable "aws_secret_key" {
 
 variable "image_id" {
   type        = string
-  description = "ID of a LinuxKit based image build from github.com/yandexcloud/kubernetes."
+  description = "ID of a LinuxKit based image build from github.com/yandexcloud/eproxy."
 }
 
 variable "sa" {
