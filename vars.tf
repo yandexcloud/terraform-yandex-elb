@@ -8,9 +8,9 @@ variable "domain_name" {
   description = "Load balancer domain name associated."
 }
 
-variable "folder" {
+variable "folder_id" {
   type        = string
-  description = "Name of the parent folder"
+  description = "Yandex Cloud Folder ID where to create resources."
 }
 
 variable "hosted_zone_id" {
@@ -38,9 +38,9 @@ variable "aws_secret_key" {
   description = "AWS secret access key to assume the role provided."
 }
 
-variable "image" {
+variable "image_id" {
   type        = string
-  description = "Load balancer image name."
+  description = "ID of a LinuxKit based image build from github.com/yandexcloud/kubernetes."
 }
 
 variable "sa" {
@@ -116,10 +116,10 @@ variable "labels" {
 
 variable "clusters" {
   type = list(object({
-    name    = string
-    id      = string
-    fport   = number
-    bport   = number
+    name  = string
+    id    = string
+    fport = number
+    bport = number
     healthcheck = object({
       timeout             = number
       interval            = number

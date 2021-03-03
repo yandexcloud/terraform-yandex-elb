@@ -6,17 +6,9 @@ terraform {
   }
 }
 
-data "yandex_resourcemanager_folder" "folder" {
-  name = var.folder
-}
-
-data "yandex_compute_image" "elb" {
-  name = var.image
-}
-
 resource "yandex_compute_instance_group" "elb" {
+  folder_id          = var.folder_id
   name               = var.name
-  folder_id          = data.yandex_resourcemanager_folder.folder.id
   service_account_id = var.sa
 
   instance_template {
@@ -34,7 +26,7 @@ resource "yandex_compute_instance_group" "elb" {
     boot_disk {
       mode = "READ_WRITE"
       initialize_params {
-        image_id = data.yandex_compute_image.elb.id
+        image_id = var.image_id
         size     = var.disk_size
         type     = var.disk_type
       }
