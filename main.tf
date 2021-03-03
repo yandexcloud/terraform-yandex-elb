@@ -46,7 +46,7 @@ resource "yandex_compute_instance_group" "elb" {
         aws_access_key = var.aws_access_key
         aws_secret_key = var.aws_secret_key
         aws_zone_id    = var.hosted_zone_id
-        folder_id      = var.folder.id
+        folder_id      = var.folder_id
         group_name     = var.name
         domain_name    = var.domain_name
         clusters       = var.clusters
