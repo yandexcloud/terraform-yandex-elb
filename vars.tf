@@ -125,7 +125,6 @@ variable "clusters" {
       interval            = number
       healthy_threshold   = number
       unhealthy_threshold = number
-      path                = string
     })
   }))
   description = "List of target groups."
